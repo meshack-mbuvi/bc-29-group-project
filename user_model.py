@@ -4,5 +4,3 @@ class User:
         self.username = username
         self.password = password
         self.user_category = user_category
-
-        
