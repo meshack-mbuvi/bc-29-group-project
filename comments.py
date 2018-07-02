@@ -37,7 +37,16 @@ class Comment:
 
         return  "comment succesfully created"
 
-    
+    @staticmethod
+    def reply_comment(reply, comment_id):
+        for comment in Comment.comments:
+            if not comment_id in comment:
+                return "comment does not exist"
+
+        return "comment succefully created"
+
+        
+
 
     
 
