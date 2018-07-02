@@ -11,11 +11,12 @@ def manage():
             comment_obj = Comment(comment, author)
             result = comment_obj.create_comment()
             print(result)
+            comment_obj.show()
         if var == 'edit':
             comment_id = input('Enter comment id: ..')
             message = input("Enter comment message")
             com_object = [comment for comment in Comment.comments if comment[
-                'comment_id'] == int(id)]
+                'comment_id'] == int(comment_id)]
 
 
 while(True):
@@ -24,12 +25,16 @@ while(True):
         username = input("Your username:...\n")
         password = input("your password:...\n")
         conf_password = input("confirmation password:...\n")
-        conf_password = input("category:...\n")
-        result = signup(username, password, conf_password)
+        user_cat = input("category:...\n")
+        result = signup(username, password, conf_password, user_cat)
         print(result)
+
     if var == 'login':
         username = input("Your username:...")
         password = input("your password:...")
         result = login(username, password)
-
-        manage()
+        if result == 'User does not exist':
+            print("Account does not exist")
+            continue
+        else:
+            manage()

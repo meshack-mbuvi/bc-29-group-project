@@ -27,16 +27,18 @@ class Comment:
             'comment': self.comment,
             'author': self.author,
             'comment_id': self.id,
-            'date_created': self.date_created
+            'date_created': datetime.strftime(self.date_created, '%B %d %Y %I:%M%p')
         }
-        
+
         self.comments.append(comment_dict)
 
-        return  "comment succesfully created"
-
+        return "comment succesfully created"
 
     def edit_comment(self, id, message):
         comment = [com for com in comments if com['comment_id'] == id]
         if comment:
             comment['comment'] = message
         return "comment updated"
+
+    def show(self):
+        print(self.comments)

@@ -1,14 +1,12 @@
+from datetime import datetime
 from user_model import User
 
+
 users = []
+logged_in_users = []
 
 
 def signup(username, password, conf_password, user_category='normal'):
-    if password.strip() == '' or username.strip() == '':
-        return 'username or password cannot be empty'
-    if not password == conf_password:
-        return 'passwords provided do not match'
-    # check whether user exists
     user_exists = [user for user in users if user['username'] == username]
 
     if len(user_exists) > 0:
@@ -20,22 +18,22 @@ def signup(username, password, conf_password, user_category='normal'):
 
         return 'Account created successfully'
 
-def login(username, password):
 
+def login(username, password):
 
     if password.strip() == '' or username.strip() == '':
         return 'username or password cannot be empty'
+    print(users)
+    user = [user for user in users if user['username']\
+            == username and user['password'] == password]
 
-    for user in users:
-    
-        if  user['username'] != username or user['password'] != password:
-            return 'invalid username or password'
-        else:
-             
-             current_user = user['username']
-             message="succefully logged in as {}".format(current_user)
+    if user:
+        current_user = user[0]['username']
+        user[0]['last_login'] = datetime.now()
+        # del users[0]
+        users.append(user[0])
+        logged_in_users.append(current_user)
+        message = "succefully logged in as {}".format(current_user)
 
-
-    return message
-    
-
+        return message
+    return 'User does not exist'
