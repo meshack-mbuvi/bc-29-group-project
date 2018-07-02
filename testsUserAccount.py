@@ -1,5 +1,5 @@
 import unittest
-from user_views import signup
+from user_views import signup, login
 
 
 class testuser(unittest.TestCase):
@@ -39,3 +39,18 @@ class testuser(unittest.TestCase):
         results = signup(self.username, password,
                          conf_pass, self.user_category)
         self.assertEqual(results, 'username or password cannot be empty')
+
+    def test_user_cant_login_with_empty_password_or_username(self):
+        username = ''
+        password = ''
+
+        results = login(username, password)
+        self.assertEqual(results, 'username or password cannot be empty')
+
+    def test_user_login_with_correct_details(self):
+        signup(self.username, self.password,self.conf_pass, self.user_category)
+        results = login(self.username, self.password)
+        self.assertEqual(results, "succefully logged in as {}".format(self.username))
+
+
+    

@@ -1,7 +1,9 @@
 import unittest
 from comments import Comment
 
+
 class TestComments(unittest.TestCase):
+
     def setUp(self):
         self.comment = 'hey you'
         self.author = 'larry'
@@ -12,8 +14,7 @@ class TestComments(unittest.TestCase):
     def test_create_comments_with_correct_details(self):
         results = Comment(self.comment, self.author).create_comment()
 
-        self.assertEqual(results, "comment succesfully created" )
-        
+        self.assertEqual(results, "comment succesfully created")
 
     def test_create_comments_with_no_comment(self):
         results = Comment(self.wrong_coment, self.author).create_comment()
