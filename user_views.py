@@ -19,3 +19,23 @@ def signup(username, password, conf_password, user_category='normal'):
         users.append(user_object.__dict__)
 
         return 'Account created successfully'
+
+def login(username, password):
+
+
+    if password.strip() == '' or username.strip() == '':
+        return 'username or password cannot be empty'
+
+    for user in users:
+    
+        if  user['username'] != username or user['password'] != password:
+            return 'invalid username or password'
+        else:
+             
+             current_user = user['username']
+             message="succefully logged in as {}".format(current_user)
+
+
+    return message
+    
+
